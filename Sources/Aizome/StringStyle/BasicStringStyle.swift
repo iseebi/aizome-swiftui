@@ -7,6 +7,12 @@ struct BasicStringStyle: StringStyle {
     var color: Color? = nil
     var underline: Bool = false
     
+    public init(font: Font? = nil, color: Color? = nil, underline: Bool = false) {
+        self.font = font
+        self.color = color
+        self.underline = underline
+    }
+    
     func apply(to attributed: inout AttributedString, range: Range<AttributedString.Index>) {
         if let font {
             attributed[range].font = font

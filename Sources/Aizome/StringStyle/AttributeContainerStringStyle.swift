@@ -4,7 +4,7 @@ import Foundation
 struct AttributeContainerStringStyle: StringStyle {
     let attributes: AttributeContainer
     
-    init(attributes: AttributeContainer) {
+    public init(attributes: AttributeContainer) {
         self.attributes = attributes
     }
     
