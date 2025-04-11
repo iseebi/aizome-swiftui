@@ -9,13 +9,15 @@ import SwiftUI
 import Aizome
 
 struct ContentView: View {
+    let parameterizedStyleFormatter = StringStyleFormatter(formatString: "User: <bold>%@</bold>, Score: <red>%03d</red>")
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Formatted Styled Text")
                 .font(.title2)
                 .bold()
 
-            Text(formattedExample)
+            Text(styledString("This is <red>red</red> and <bold>bold</bold> text with &lt;escaped&gt; HTML."))
                 .font(.body)
                 .multilineTextAlignment(.leading)
 
@@ -23,21 +25,11 @@ struct ContentView: View {
                 .font(.title2)
                 .bold()
 
-            Text(parameterizedExample)
+            Text(parameterizedStyleFormatter.format("Alice", 7))
                 .font(.body)
                 .multilineTextAlignment(.leading)
         }
         .padding()
-    }
-    
-    private var formattedExample: AttributedString {
-        let format = "This is <red>red</red> and <bold>bold</bold> text with &lt;escaped&gt; HTML."
-        return StringStyleFormatter(formatString: format).render()
-    }
-
-    private var parameterizedExample: AttributedString {
-        let format = "User: <bold>%@</bold>, Score: <red>%03d</red>"
-        return StringStyleFormatter(formatString: format).format("Alice", 7)
     }
 }
 
