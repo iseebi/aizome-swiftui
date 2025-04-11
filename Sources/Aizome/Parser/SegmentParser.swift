@@ -1,7 +1,7 @@
 import Foundation
 
-func parseToSegments(_ string: String, logger: ParserLogger) -> [Segment] {
-    var segments: [Segment] = []
+func parseToSegments(_ string: String, logger: ParserLogger) -> [ParserSegment] {
+    var segments: [ParserSegment] = []
     var styleStack: [String] = []
     
     var i = string.startIndex

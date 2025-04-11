@@ -21,8 +21,8 @@ struct IndexCounter {
     }
 }
 
-func parseParameterStrings(_ segments: [Segment], logger: ParserLogger) -> [Segment] {
-    var result: [Segment] = []
+func parseParameterStrings(_ segments: [ParserSegment], logger: ParserLogger) -> [ParserSegment] {
+    var result: [ParserSegment] = []
     var indexCounter = IndexCounter()
 
     for segment in segments {

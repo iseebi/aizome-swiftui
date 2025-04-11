@@ -1,10 +1,5 @@
 import Foundation
 
-struct ParsedSegments {
-    // 分割されたセグメント
-    let segments: [Segment]
-}
-
 protocol ParserLogger {
     func warning(_ warning: ParserWarning)
 }
@@ -28,7 +23,7 @@ struct ParserLoggerImpl: ParserLogger {
     }
 }
 
-enum Segment {
+enum ParserSegment {
     case text(String, styles: [String])
     case placeholder(format: String, index: Int, styles: [String])
 }
@@ -42,7 +37,7 @@ enum ParserWarning: Equatable {
     case unknownFormat(format: String)
 }
 
-func parseFormatString(_ string: String, logger: Aizome.Logger) -> [Segment] {
+func parseFormatString(_ string: String, logger: Aizome.Logger) -> [ParserSegment] {
     let parserLogger = ParserLoggerImpl(logger: logger)
     
     // セグメントに分割する
@@ -54,7 +49,7 @@ func parseFormatString(_ string: String, logger: Aizome.Logger) -> [Segment] {
     return parameterizedSegments
 }
 
-func appendTextSegment(_ string: String, styles: [String], to segments: inout [Segment]) {
+func appendTextSegment(_ string: String, styles: [String], to segments: inout [ParserSegment]) {
     guard !string.isEmpty else { return }
     segments.append(.text(string, styles: styles))
 }

@@ -4,10 +4,10 @@ import Testing
 struct ParseParameterStringsTests {
     @Test
     func parsesSimplePlaceholder() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("Hello %@!", styles: ["bold"]),
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .text("Hello ", styles: ["bold"]),
             .placeholder(format: "%@", index: 0, styles: ["bold"]),
             .text("!", styles: ["bold"]),
@@ -17,10 +17,10 @@ struct ParseParameterStringsTests {
     
     @Test
     func parsesSimpleMultiplePlaceholder() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("Hello %@! Your score is %d", styles: ["bold"]),
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .text("Hello ", styles: ["bold"]),
             .placeholder(format: "%@", index: 0, styles: ["bold"]),
             .text("! Your score is ", styles: ["bold"]),
@@ -31,10 +31,10 @@ struct ParseParameterStringsTests {
 
     @Test
     func parsesMultiplePlaceholdersWithExplicitIndexes() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("A: %2$d, B: %1$@, C: %3$.2f", styles: [])
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .text("A: ", styles: []),
             .placeholder(format: "%d", index: 1, styles: []),
             .text(", B: ", styles: []),
@@ -47,10 +47,10 @@ struct ParseParameterStringsTests {
     
     @Test
     func parsesEscapedPercent() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("Progress: 100%%", styles: ["italic"])
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .text("Progress: 100", styles: ["italic"]),
             .text("%", styles: ["italic"]),
         ]
@@ -59,10 +59,10 @@ struct ParseParameterStringsTests {
     
     @Test
     func ignoresInvalidFormat() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("Result: %z", styles: [])
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .text("Result: ", styles: [])
         ]
         let warnings: [ParserWarning] = [
@@ -73,10 +73,10 @@ struct ParseParameterStringsTests {
     
     @Test
     func parsesMixedExplicitAndImplicitIndexes() throws {
-        let input: [Segment] = [
+        let input: [ParserSegment] = [
             .text("%1$d %d %4$d %d %d", styles: [])
         ]
-        let expect: [Segment] = [
+        let expect: [ParserSegment] = [
             .placeholder(format: "%d", index: 0, styles: []),
             .text(" ", styles: []),
             .placeholder(format: "%d", index: 1, styles: []),
@@ -90,7 +90,7 @@ struct ParseParameterStringsTests {
         try run(input: input, expect: expect)
     }
     
-    func run(input: [Segment], expect: [Segment], warnings: [ParserWarning] = []) throws {
+    func run(input: [ParserSegment], expect: [ParserSegment], warnings: [ParserWarning] = []) throws {
         let logger = TestParserLogger()
         let result = parseParameterStrings(input, logger: logger)
         try #require(result.count == expect.count)
