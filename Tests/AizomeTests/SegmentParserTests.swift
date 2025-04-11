@@ -2,21 +2,9 @@ import Testing
 @testable import Aizome
 
 struct SegmentParserTests {
-    final class TestLogger: ParserLogger {
-        var warnings: [ParserWarning] = []
-
-        func warning(_ warning: ParserWarning) {
-            warnings.append(warning)
-        }
-
-        func contains(_ expected: ParserWarning) -> Bool {
-            warnings.contains(where: { $0 == expected })
-        }
-    }
-    
     @Test
     func parsesSimpleText() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         let segments = parseToSegments("Hello world", logger: logger)
 
         #expect(segments.count == 1)
@@ -32,7 +20,7 @@ struct SegmentParserTests {
 
     @Test
     func parsesSingleTag() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         let segments = parseToSegments("<blue>Hello</blue>", logger: logger)
 
         #expect(segments.count == 1)
@@ -47,7 +35,7 @@ struct SegmentParserTests {
 
     @Test
     func parsesNestedTags() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         let segments = parseToSegments("<blue><bold>Hello</bold></blue>", logger: logger)
 
         #expect(segments.count == 1)
@@ -62,7 +50,7 @@ struct SegmentParserTests {
     
     @Test
     func parsesComplexNestedTags() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         let segments = parseToSegments("<red><blue>123</blue>456<yellow>789</yellow></red>", logger: logger)
 
         #expect(segments.count == 3)
@@ -93,7 +81,7 @@ struct SegmentParserTests {
 
     @Test
     func warnsOnUnopenedClosingTag() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         _ = parseToSegments("Hello</blue>", logger: logger)
 
         #expect(logger.contains(.unopenedMarkup(tag: "blue", index: 5)))
@@ -101,7 +89,7 @@ struct SegmentParserTests {
 
     @Test
     func warnsOnUnclosedTag() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         _ = parseToSegments("<red>Hello", logger: logger)
 
         #expect(logger.contains(.unclosedMarkup(tag: "red", index: 10)))
@@ -109,7 +97,7 @@ struct SegmentParserTests {
 
     @Test
     func warnsOnUnclosedInvalidTag() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         _ = parseToSegments("<red hoge</red>", logger: logger)
 
         #expect(logger.contains(.unclosedTag(index: 0)))
@@ -117,7 +105,7 @@ struct SegmentParserTests {
 
     @Test
     func ignoresEmptyTag() {
-        let logger = TestLogger()
+        let logger = TestParserLogger()
         let segments = parseToSegments("Hello<>world", logger: logger)
 
         #expect(segments.count == 2)
