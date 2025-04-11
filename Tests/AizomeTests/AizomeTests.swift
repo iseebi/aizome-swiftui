@@ -3,24 +3,6 @@ import SwiftUICore
 @testable import Aizome
 
 struct AizomeTests {
-    func assertStyle(
-        _ string: AttributedString,
-        substring: String,
-        expectedFont: Font? = nil,
-        expectedColor: Color? = nil
-    ) throws {
-        let range = try #require(string.range(of: substring), "Substring '\(substring)' not found")
-        let run = try #require(string.runs.first { $0.range == range }, "No run found for substring '\(substring)'")
-        
-        if let expectedFont {
-            #expect(run.font == expectedFont)
-        }
-
-        if let expectedColor {
-            #expect(run.foregroundColor == expectedColor)
-        }
-    }
-
     let definitions: StringStyleDefinitions = [
         "red": BasicStringStyle(color: .red),
         "blue": BasicStringStyle(color: .blue),

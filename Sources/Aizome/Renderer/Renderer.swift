@@ -91,7 +91,7 @@ struct AttributedStringRenderer: Renderer {
         }
     }
 
-    func applyStyle(to: String, styles: [String], with definitions: StringStyleDefinitions) -> AttributedString {
+    private func applyStyle(to: String, styles: [String], with definitions: StringStyleDefinitions) -> AttributedString {
         var attributedString = rendererOperator.create(from: to)
         if let range = attributedString.range(of: to) {
             rendererOperator.apply(styles, in: range, with: definitions, to: &attributedString)

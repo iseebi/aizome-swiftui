@@ -13,3 +13,15 @@ final class TestParserLogger: ParserLogger {
     }
 }
 
+final class TestRendererLogger: RendererLogger {
+    var warnings: [RendererWarning] = []
+    
+    func warning(_ warning: RendererWarning) {
+        warnings.append(warning)
+    }
+    
+    func contains(_ expected: RendererWarning) -> Bool {
+        warnings.contains(where: { $0 == expected })
+    }
+}
+
