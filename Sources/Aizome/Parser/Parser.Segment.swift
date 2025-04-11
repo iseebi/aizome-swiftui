@@ -86,7 +86,22 @@ extension Parser {
         }
         
         // セグメントを返す
-        return segments
+        return segments.map {
+            switch $0 {
+            case .text(let text, let styles):
+                if !text.contains("&") {
+                    return $0
+                }
+                return .text(
+                    text.replacingOccurrences(of: "&amp;", with: "&")
+                        .replacingOccurrences(of: "&lt;", with: "<")
+                        .replacingOccurrences(of: "&gt;", with: ">"),
+                    styles: styles
+                )
+            default:
+                return $0
+            }
+        }
     }
 
     func containsInvalidTagCharacters(_ tag: Substring) -> Bool {
