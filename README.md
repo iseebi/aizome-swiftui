@@ -14,7 +14,7 @@ let package = Package(
     targets: [
         .target(
             name: "<your-target-name>",
-            dependencies: ["StringTransform"]),
+            dependencies: ["Aizome"]),
     ]
 )
 ```
