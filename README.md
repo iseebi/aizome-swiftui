@@ -77,7 +77,7 @@ let formatter = StringStyleFormatter(
 Then use the format method to produce a styled string with your arguments:
 
 ```swift
-let styled: StyledText = formatter.format("iseebi", 5)
+formatter.format("iseebi", 5)
 ```
 
 This allows you to keep formatting logic efficient and consistent throughout your app.
