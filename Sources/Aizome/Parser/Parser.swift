@@ -1,6 +1,5 @@
 import Foundation
 
-
 enum ParserSegment {
     case text(String, styles: [String])
     case placeholder(format: String, raw: String, index: Int, styles: [String])
