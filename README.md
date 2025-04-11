@@ -82,6 +82,41 @@ formatter.format("iseebi", 5)
 
 This allows you to keep formatting logic efficient and consistent throughout your app.
 
+## Advanced Usage
+
+### Using `AttributeContainerStringStyle`
+
+If you want full control over the attributes applied to the styled text—beyond font and color—you can use `AttributeContainerStringStyle`.
+
+This style type allows you to directly specify a `AttributeContainer`, enabling integration with underline, kerning, tracking, baseline offset, and more.
+
+```swift
+import Aizome
+import SwiftUI
+
+var container = AttributeContainer()
+container.underlineStyle = .single
+container.foregroundColor = .blue
+
+let underlineStyle = AttributeContainerStringStyle(attributes: container)
+
+Aizome.defineDefaultStyles([
+    "underlineBlue": underlineStyle
+])
+
+styledString("<underlineBlue>Underlined & Blue</underlineBlue>")
+```
+
+This approach gives you the flexibility to apply any `AttributeScopes.SwiftUIAttributes` values—including advanced ones like:
+
+- `.strikethroughStyle`
+- `.tracking`
+- ` .baselineOffset`
+- `.fontWidth`
+- `.fontDesign`
+
+Use `AttributeContainerStringStyle` when you want precise control over how your styled segments are rendered.
+
 ## Copyright
 
 see ./LICENSE
