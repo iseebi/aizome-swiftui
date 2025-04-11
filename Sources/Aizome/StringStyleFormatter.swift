@@ -37,6 +37,10 @@ public struct StringStyleFormatter {
         self.renderSegments = renderer.convertSegments(parsed: self.parserSegments, mode: .preRender, styles: self.definitions)
     }
     
+    public func render() -> AttributedString {
+        return self.renderer.renderAsLiteral(self.renderSegments, with: self.definitions)
+    }
+    
     /// Formats the string by replacing placeholders and applying styles.
     /// - Parameter args: Arguments to replace placeholders (e.g., `%@`).
     /// - Returns: A styled `AttributedString`.

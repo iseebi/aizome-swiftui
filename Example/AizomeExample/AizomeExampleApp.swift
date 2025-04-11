@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Aizome
 
 @main
 struct AizomeExampleApp: App {
@@ -13,5 +14,14 @@ struct AizomeExampleApp: App {
         WindowGroup {
             ContentView()
         }
+    }
+    
+    init() {
+        Aizome.defineDefaultStyles([
+            "red": BasicStringStyle(color: .red),
+            "blue": BasicStringStyle(color: .blue),
+            "green": BasicStringStyle(color: .green),
+            "bold12": BasicStringStyle(font: .system(size: 12, weight: .bold)),
+        ])
     }
 }

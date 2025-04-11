@@ -2,7 +2,7 @@ import Foundation
 import SwiftUICore
 
 /// A simple implementation of `StringStyle` using basic font, color, and underline options.
-struct BasicStringStyle: StringStyle {
+public struct BasicStringStyle: StringStyle {
     var font: Font? = nil
     var color: Color? = nil
     var underline: Bool = false
@@ -13,7 +13,7 @@ struct BasicStringStyle: StringStyle {
         self.underline = underline
     }
     
-    func apply(to attributed: inout AttributedString, range: Range<AttributedString.Index>) {
+    public func apply(to attributed: inout AttributedString, range: Range<AttributedString.Index>) {
         if let font {
             attributed[range].font = font
         }
