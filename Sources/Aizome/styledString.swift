@@ -13,6 +13,8 @@ import Foundation
 ///   - styles: A dictionary of style definitions to use.
 /// - Returns: A styled `AttributedString`.
 func styledString(formatString: String, styles: StringStyleDefinitions) -> AttributedString {
-    // TODO: Implement
-    return AttributedString("")
+    let pr = Aizome.createParserRenderer()
+    let parserSegments = pr.parser.parseToSegments(formatString)
+    let renderSegments = pr.renderer.convertSegments(parsed: parserSegments, mode: .simpleConvert, styles: styles)
+    return pr.renderer.renderAsLiteral(renderSegments, with: styles)
 }

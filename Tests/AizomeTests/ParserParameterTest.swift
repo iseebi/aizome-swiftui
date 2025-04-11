@@ -1,7 +1,7 @@
 import Testing
 @testable import Aizome
 
-struct ParseParameterStringsTests {
+struct ParserParameterTests {
     @Test
     func parsesSimplePlaceholder() throws {
         let input: [ParserSegment] = [
@@ -9,7 +9,7 @@ struct ParseParameterStringsTests {
         ]
         let expect: [ParserSegment] = [
             .text("Hello ", styles: ["bold"]),
-            .placeholder(format: "%@", index: 0, styles: ["bold"]),
+            .placeholder(format: "%@", raw: "%@", index: 0, styles: ["bold"]),
             .text("!", styles: ["bold"]),
         ]
         try run(input: input, expect: expect)
@@ -22,9 +22,9 @@ struct ParseParameterStringsTests {
         ]
         let expect: [ParserSegment] = [
             .text("Hello ", styles: ["bold"]),
-            .placeholder(format: "%@", index: 0, styles: ["bold"]),
+            .placeholder(format: "%@", raw: "%@", index: 0, styles: ["bold"]),
             .text("! Your score is ", styles: ["bold"]),
-            .placeholder(format: "%d", index: 1, styles: ["bold"]),
+            .placeholder(format: "%d", raw: "%d", index: 1, styles: ["bold"]),
         ]
         try run(input: input, expect: expect)
     }
@@ -36,11 +36,11 @@ struct ParseParameterStringsTests {
         ]
         let expect: [ParserSegment] = [
             .text("A: ", styles: []),
-            .placeholder(format: "%d", index: 1, styles: []),
+            .placeholder(format: "%d", raw: "%2$d", index: 1, styles: []),
             .text(", B: ", styles: []),
-            .placeholder(format: "%@", index: 0, styles: []),
+            .placeholder(format: "%@", raw: "%1$@", index: 0, styles: []),
             .text(", C: ", styles: []),
-            .placeholder(format: "%.2f", index: 2, styles: []),
+            .placeholder(format: "%.2f", raw: "%3$.2f", index: 2, styles: []),
         ]
         try run(input: input, expect: expect)
     }
@@ -77,30 +77,32 @@ struct ParseParameterStringsTests {
             .text("%1$d %d %4$d %d %d", styles: [])
         ]
         let expect: [ParserSegment] = [
-            .placeholder(format: "%d", index: 0, styles: []),
+            .placeholder(format: "%d", raw: "%1$d", index: 0, styles: []),
             .text(" ", styles: []),
-            .placeholder(format: "%d", index: 1, styles: []),
+            .placeholder(format: "%d", raw: "%d", index: 1, styles: []),
             .text(" ", styles: []),
-            .placeholder(format: "%d", index: 3, styles: []),
+            .placeholder(format: "%d", raw: "%4$d", index: 3, styles: []),
             .text(" ", styles: []),
-            .placeholder(format: "%d", index: 2, styles: []),
+            .placeholder(format: "%d", raw: "%d", index: 2, styles: []),
             .text(" ", styles: []),
-            .placeholder(format: "%d", index: 4, styles: []),
+            .placeholder(format: "%d", raw: "%d", index: 4, styles: []),
         ]
         try run(input: input, expect: expect)
     }
     
     func run(input: [ParserSegment], expect: [ParserSegment], warnings: [ParserWarning] = []) throws {
         let logger = TestParserLogger()
-        let result = parseParameterStrings(input, logger: logger)
+        let parser = Parser(logger: logger)
+        let result = parser.parseParameterStrings(input)
         try #require(result.count == expect.count)
         for (index, segment) in result.enumerated() {
             switch (segment, expect[index]) {
             case (.text(let text, let styles), .text(let expectedText, let expectedStyles)):
                 #expect(text == expectedText)
                 #expect(styles == expectedStyles)
-            case (.placeholder(let format, let index, let styles), .placeholder(let expectedFormat, let expectedIndex, let expectedStyles)):
+            case (.placeholder(let format, let raw, let index, let styles), .placeholder(let expectedFormat, let expectedRaw, let expectedIndex, let expectedStyles)):
                 #expect(format == expectedFormat)
+                #expect(raw == expectedRaw)
                 #expect(index == expectedIndex)
                 #expect(styles == expectedStyles)
             default:

@@ -11,6 +11,14 @@ extension Aizome {
         }
     }
     
+    struct StaticLogger: Aizome.Logger {
+        func warning(_ message: String) {
+            Task {
+                await Aizome.logWarning(message)
+            }
+        }
+    }
+
     actor LoggerContainer {
         private var _logger: Logger = DefaultLogger()
         

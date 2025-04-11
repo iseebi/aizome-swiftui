@@ -27,4 +27,11 @@ public struct Aizome {
     static func logWarning(_ message: String) async {
         await _loggerContainer.warning(message)
     }
+    
+    static func createParserRenderer() -> (parser: Parser, renderer: AttributedStringRenderer) {
+        let logger = StaticLogger()
+        let parser = Parser(logger: ParserLoggerImpl(logger: logger))
+        let renderer = AttributedStringRenderer(logger: RendererLoggerImpl(logger: StaticLogger()))
+        return (parser, renderer)
+    }
 }
