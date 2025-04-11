@@ -21,7 +21,7 @@ struct AizomeExampleApp: App {
             "red": BasicStringStyle(color: .red),
             "blue": BasicStringStyle(color: .blue),
             "green": BasicStringStyle(color: .green),
-            "bold12": BasicStringStyle(font: .system(size: 12, weight: .bold)),
+            "bold": BasicStringStyle(font: .system(.body, weight: .bold)),
         ])
     }
 }

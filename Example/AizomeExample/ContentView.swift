@@ -16,6 +16,7 @@ struct ContentView: View {
                 .bold()
 
             Text(formattedExample)
+                .font(.body)
                 .multilineTextAlignment(.leading)
 
             Text("Sample with Placeholders")
@@ -23,18 +24,19 @@ struct ContentView: View {
                 .bold()
 
             Text(parameterizedExample)
+                .font(.body)
                 .multilineTextAlignment(.leading)
         }
         .padding()
     }
     
     private var formattedExample: AttributedString {
-        let format = "This is <red>red</red> and <bold12>bold</bold12> text with &lt;escaped&gt; HTML."
+        let format = "This is <red>red</red> and <bold>bold</bold> text with &lt;escaped&gt; HTML."
         return StringStyleFormatter(formatString: format).render()
     }
 
     private var parameterizedExample: AttributedString {
-        let format = "User: <bold12>%@</bold12>, Score: <red>%03d</red>"
+        let format = "User: <bold>%@</bold>, Score: <red>%03d</red>"
         return StringStyleFormatter(formatString: format).format("Alice", 7)
     }
 }
