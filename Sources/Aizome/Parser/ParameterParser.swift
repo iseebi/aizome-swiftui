@@ -11,12 +11,12 @@ struct IndexCounter {
     
     mutating func nextImplicitIndex() -> Int {
         var index = nextImplicit
-        
-        while (explicit.contains(index)) {
+
+        while explicit.contains(index) {
             index += 1
         }
-        
-        nextImplicit += index + 1
+
+        nextImplicit = index + 1
         return index
     }
 }

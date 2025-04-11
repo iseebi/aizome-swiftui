@@ -71,6 +71,25 @@ struct ParseParameterStringsTests {
         try run(input: input, expect: expect, warnings: warnings)
     }
     
+    @Test
+    func parsesMixedExplicitAndImplicitIndexes() throws {
+        let input: [Segment] = [
+            .text("%1$d %d %4$d %d %d", styles: [])
+        ]
+        let expect: [Segment] = [
+            .placeholder(format: "%d", index: 0, styles: []),
+            .text(" ", styles: []),
+            .placeholder(format: "%d", index: 1, styles: []),
+            .text(" ", styles: []),
+            .placeholder(format: "%d", index: 3, styles: []),
+            .text(" ", styles: []),
+            .placeholder(format: "%d", index: 2, styles: []),
+            .text(" ", styles: []),
+            .placeholder(format: "%d", index: 4, styles: []),
+        ]
+        try run(input: input, expect: expect)
+    }
+    
     func run(input: [Segment], expect: [Segment], warnings: [ParserWarning] = []) throws {
         let logger = TestParserLogger()
         let result = parseParameterStrings(input, logger: logger)
