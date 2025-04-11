@@ -1,7 +1,7 @@
 import Testing
 @testable import Aizome
 
-struct ParseToSegmentsTests {
+struct SegmentParserTests {
     final class TestLogger: ParserLogger {
         var warnings: [ParserWarning] = []
 
