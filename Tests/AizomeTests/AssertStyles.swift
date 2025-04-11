@@ -36,3 +36,10 @@ struct StyleAssert {
         try assertStyle(string, substring: substring, expectedFont: font, expectedColor: color)
     }
 }
+
+func attrContainer(_ f: (inout AttributeContainer) -> ()) -> AttributeContainer {
+    var attr = AttributeContainer()
+    f(&attr)
+    return attr
+}
+    

@@ -60,8 +60,8 @@ struct AttributedStringRenderer: Renderer {
             case .text(let text, let styles):
                 let attributedString = applyStyle(to: text, styles: styles, with: definitions)
                 result.append(attributedString)
-            case .placeholder(let format, _, _, let styles):
-                let attributedString = applyStyle(to: format, styles: styles, with: definitions)
+            case .placeholder(_, let raw, _, let styles):
+                let attributedString = applyStyle(to: raw, styles: styles, with: definitions)
                 result.append(attributedString)
             case .rendered(let rendered):
                 result.append(rendered)
