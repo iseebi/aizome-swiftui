@@ -19,7 +19,7 @@ public struct StringStyleFormatter {
         self.renderer = pr.renderer
         
         self.definitions = Aizome.defaultStyles
-        self.parserSegments = parser.parseToSegments(formatString)
+        self.parserSegments = parser.parseFormatString(formatString)
         self.renderSegments = renderer.convertSegments(parsed: self.parserSegments, mode: .preRender, styles: self.definitions)
     }
     
@@ -33,7 +33,7 @@ public struct StringStyleFormatter {
         self.renderer = pr.renderer
         
         self.definitions = styles
-        self.parserSegments = parser.parseToSegments(formatString)
+        self.parserSegments = parser.parseFormatString(formatString)
         self.renderSegments = renderer.convertSegments(parsed: self.parserSegments, mode: .preRender, styles: self.definitions)
     }
     
