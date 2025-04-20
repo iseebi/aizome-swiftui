@@ -1,5 +1,14 @@
 # Aizome
 
+[![Release](https://img.shields.io/github/v/release/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/releases/latest)
+<!--
+[![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fiseebi%2Faizome-swiftui%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/iseebi/aizome-swiftui)
+[![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fiseebi%2Faizome-swiftui%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/iseebi/aizome-swiftui)
+-->
+[![License](https://img.shields.io/github/license/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/blob/main/LICENSE)
+
+See also: [aizome-compose(for Jetpack Compose in Android/Compose Multiplatform)](https://github.com/iseebi/aizome-compose)
+
 Aizome is a lightweight Swift library for rendering richly styled text in SwiftUI using a custom markup syntax. Define your own styles and apply them directly within strings, just like HTML—without the complexity.
 
 ## Installation
@@ -42,7 +51,7 @@ Aizome.defineDefaultStyles([
 
 ### 2. Write Markup-Style Text
 
-Use custom tags like <bold>, <red>, or any tag name you’ve defined:
+Use custom tags like `<bold>`, `<red>`, or any tag name you've defined:
 
 ```swift
 let message = "<bold>Hello</bold>, <red>world</red>! Let's <highlight>shine</highlight>."
@@ -62,7 +71,7 @@ This will parse your markup, apply the defined styles, and render the text with 
 
 You can use placeholders like `%@`, `%d`, and other String.format-style specifiers inside your styled text.
 
-For performance reasons, we recommend creating a StringStyleFormatter instance in advance and reusing it:
+For performance reasons, we need to creating a StringStyleFormatter instance in advance and reusing it:
 
 ```swift
 let formatter = StringStyleFormatter(
