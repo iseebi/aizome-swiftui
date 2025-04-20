@@ -1,11 +1,9 @@
 # Aizome
 
-[![Release](https://img.shields.io/github/v/release/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/releases/latest)
-<!--
+[![Release](https://img.shields.io/github/v/release/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/releases/latest) <!--
 [![Swift Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fiseebi%2Faizome-swiftui%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/iseebi/aizome-swiftui)
 [![Platform Compatibility](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fiseebi%2Faizome-swiftui%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/iseebi/aizome-swiftui)
--->
-[![License](https://img.shields.io/github/license/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/blob/main/LICENSE)
+-->[![License](https://img.shields.io/github/license/iseebi/aizome-swiftui)](https://github.com/iseebi/aizome-swiftui/blob/main/LICENSE)
 
 See also: [aizome-compose(for Jetpack Compose in Android/Compose Multiplatform)](https://github.com/iseebi/aizome-compose)
 
