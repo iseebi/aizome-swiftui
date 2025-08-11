@@ -1,7 +1,7 @@
 import Foundation
 
 /// A `StringStyle` implementation that applies an entire `AttributeContainer`.
-public struct AttributeContainerStringStyle: StringStyle {
+public struct AttributeContainerStringStyle: AizomeStringStyle {
     let attributes: AttributeContainer
     
     public init(attributes: AttributeContainer) {

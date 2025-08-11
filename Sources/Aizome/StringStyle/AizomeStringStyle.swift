@@ -1,7 +1,7 @@
 import Foundation
 
 /// A protocol that defines how to apply style to a specified range of an `AttributedString`.
-public protocol StringStyle {
+public protocol AizomeStringStyle {
     /// Applies the style to a given range of an AttributedString.
     /// - Parameters:
     ///   - attributed: The mutable attributed string to which the style will be applied.
@@ -9,4 +9,4 @@ public protocol StringStyle {
     func apply(to attributed: inout AttributedString, range: Range<AttributedString.Index>)
 }
 
-public typealias StringStyleDefinitions = [String: StringStyle]
+public typealias StringStyleDefinitions = [String: AizomeStringStyle]

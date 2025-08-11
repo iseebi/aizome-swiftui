@@ -8,6 +8,12 @@
 import SwiftUI
 import Aizome
 
+struct UnderlinedStringStyle: AizomeStringStyle {
+    func apply(to attributed: inout AttributedString, range: Range<AttributedString.Index>) {
+        attributed[range].underlineStyle = .single
+    }
+}
+
 struct ContentView: View {
     let parameterizedStyleFormatter = StringStyleFormatter(formatString: "User: <bold>%@</bold>, Score: <red>%03d</red>")
     
@@ -26,6 +32,16 @@ struct ContentView: View {
                 .bold()
 
             Text(parameterizedStyleFormatter.format("Alice", 7))
+                .font(.body)
+                .multilineTextAlignment(.leading)
+            
+            Text("Custom StringStyle")
+                .font(.title2)
+                .bold()
+
+            Text(styledString("This text is <u>underlined</u>.", styles: [
+                "u": UnderlinedStringStyle(),
+            ]))
                 .font(.body)
                 .multilineTextAlignment(.leading)
         }
