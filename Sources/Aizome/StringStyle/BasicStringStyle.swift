@@ -2,7 +2,7 @@ import Foundation
 import SwiftUICore
 
 /// A simple implementation of `StringStyle` using basic font, color, and underline options.
-public struct BasicStringStyle: StringStyle {
+public struct BasicStringStyle: AizomeStringStyle {
     var font: Font? = nil
     var color: Color? = nil
     var underline: Bool = false
