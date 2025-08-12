@@ -12,7 +12,8 @@ import Foundation
 ///   - formatString: A string containing style markup tags.
 ///   - styles: A dictionary of style definitions to use.
 /// - Returns: A styled `AttributedString`.
-public func styledString(_ formatString: String, styles: StringStyleDefinitions) -> AttributedString {
+@MainActor public func styledString(_ formatString: String, styles: StringStyleDefinitions, ignoreDefaultStyles: Bool = false) -> AttributedString {
+    let styles = ignoreDefaultStyles ? styles : Aizome.defaultStyles.merging(styles) { $1 }
     let pr = Aizome.createParserRenderer()
     let parserSegments = pr.parser.parseToSegments(formatString)
     let renderSegments = pr.renderer.convertSegments(parsed: parserSegments, mode: .simpleConvert, styles: styles)

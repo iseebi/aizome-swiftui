@@ -39,7 +39,7 @@ struct ContentView: View {
                 .font(.title2)
                 .bold()
 
-            Text(styledString("This text is <u>underlined</u>.", styles: [
+            Text(styledString("This text is <u>underlined</u>. This text is <blue><u>underlined and blue</u></blue>.", styles: [
                 "u": UnderlinedStringStyle(),
             ]))
                 .font(.body)
