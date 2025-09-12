@@ -46,7 +46,7 @@ struct ContentView: View {
                 .multilineTextAlignment(.leading)
             
             Text(styledString(
-                "<strikethrough>Deleted text.</strikethrough>",
+                "<strikethrough>Cancelled text.</strikethrough>",
                 styles: [
                     "strikethrough": BasicStringStyle(strikethrough: true)
                 ]
