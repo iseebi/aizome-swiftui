@@ -44,6 +44,13 @@ struct ContentView: View {
             ]))
                 .font(.body)
                 .multilineTextAlignment(.leading)
+            
+            Text(styledString(
+                "<strikethrough>Deleted text.</strikethrough>",
+                styles: [
+                    "strikethrough": BasicStringStyle(strikethrough: true)
+                ]
+            ))
         }
         .padding()
     }
