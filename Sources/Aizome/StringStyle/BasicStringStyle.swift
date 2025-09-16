@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-/// A simple implementation of `StringStyle` using basic font, color, and underline options.
+/// A simple implementation of `StringStyle` using basic font, color, underline, and strikethrough options.
 public struct BasicStringStyle: AizomeStringStyle {
     var font: Font? = nil
     var color: Color? = nil
