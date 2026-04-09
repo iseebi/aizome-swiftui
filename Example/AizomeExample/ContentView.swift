@@ -51,6 +51,10 @@ struct ContentView: View {
                     "strikethrough": BasicStringStyle(strikethrough: true)
                 ]
             ))
+
+            Divider()
+
+            UIKitInteropView()
         }
         .padding()
     }

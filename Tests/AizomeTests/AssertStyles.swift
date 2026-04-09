@@ -1,6 +1,6 @@
 import Testing
 import Foundation
-import SwiftUICore
+import SwiftUI
 @testable import Aizome
 
 func assertStyle(

@@ -1,5 +1,5 @@
 import Testing
-import SwiftUICore
+import SwiftUI
 import Foundation
 @testable import Aizome
 
