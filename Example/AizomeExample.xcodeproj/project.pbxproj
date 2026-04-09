@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		82CF86EB2DA7908D00ABC3F4 /* Aizome in Frameworks */ = {isa = PBXBuildFile; productRef = 82CF86EA2DA7908D00ABC3F4 /* Aizome */; };
+		82CF86EC2DA7908D00ABC3F4 /* AizomeUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = 82CF86ED2DA7908D00ABC3F4 /* AizomeUIKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82CF86EB2DA7908D00ABC3F4 /* Aizome in Frameworks */,
+				82CF86EC2DA7908D00ABC3F4 /* AizomeUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +73,7 @@
 			name = AizomeExample;
 			packageProductDependencies = (
 				82CF86EA2DA7908D00ABC3F4 /* Aizome */,
+				82CF86ED2DA7908D00ABC3F4 /* AizomeUIKit */,
 			);
 			productName = AizomeExample;
 			productReference = 82CF86CF2DA7903F00ABC3F4 /* AizomeExample.app */;
@@ -345,6 +348,10 @@
 		82CF86EA2DA7908D00ABC3F4 /* Aizome */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aizome;
+		};
+		82CF86ED2DA7908D00ABC3F4 /* AizomeUIKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AizomeUIKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
