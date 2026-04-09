@@ -11,6 +11,9 @@ let package = Package(
         .library(
             name: "Aizome",
             targets: ["Aizome"]),
+        .library(
+            name: "AizomeUIKit",
+            targets: ["AizomeUIKit"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -20,6 +23,9 @@ let package = Package(
             linkerSettings: [
                 .linkedFramework("SwiftUI")
             ]),
+        .target(
+            name: "AizomeUIKit",
+            dependencies: ["Aizome"]),
         .testTarget(
             name: "AizomeTests",
             dependencies: ["Aizome"]
