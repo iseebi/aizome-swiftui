@@ -1,3 +1,4 @@
+#if canImport(UIKit)
 import SwiftUI
 import UIKit
 import Aizome
@@ -45,3 +46,4 @@ public struct InteropBasicStringStyle: AizomeStringStyle {
         attributed[range].mergeAttributes(container)
     }
 }
+#endif
