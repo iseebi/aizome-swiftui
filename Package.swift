@@ -30,5 +30,9 @@ let package = Package(
             name: "AizomeTests",
             dependencies: ["Aizome"]
         ),
+        .testTarget(
+            name: "AizomeUIKitTests",
+            dependencies: ["AizomeUIKit"]
+        ),
     ]
 )
