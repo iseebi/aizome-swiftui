@@ -124,6 +124,51 @@ This approach gives you the flexibility to apply any `AttributeScopes.SwiftUIAtt
 
 Use `AttributeContainerStringStyle` when you want precise control over how your styled segments are rendered.
 
+### UIKit Interoperability
+
+If your app uses both SwiftUI and UIKit, you can use the `AizomeUIKit` library to share styled strings across both frameworks.
+
+First, add `AizomeUIKit` to your target dependencies:
+
+```swift
+.target(
+    name: "<your-target-name>",
+    dependencies: ["Aizome", "AizomeUIKit"]),
+```
+
+`InteropBasicStringStyle` applies attributes to both the SwiftUI and UIKit attribute scopes simultaneously, so a single `AttributedString` can be rendered correctly by both `SwiftUI.Text` and `UIKit.UILabel`.
+
+```swift
+import Aizome
+import AizomeUIKit
+import SwiftUI
+
+let styles: StringStyleDefinitions = [
+    "bold": InteropBasicStringStyle(
+        swiftUIFont: .system(size: 16, weight: .bold),
+        uiKitFont: .boldSystemFont(ofSize: 16)
+    ),
+    "red": InteropBasicStringStyle(
+        swiftUIColor: .red,
+        uiKitColor: .red
+    ),
+]
+
+let attributed = styledString("<bold>Hello</bold>, <red>world</red>!", styles: styles)
+```
+
+Use it directly in SwiftUI:
+
+```swift
+Text(attributed)
+```
+
+Or convert to `NSAttributedString` for UIKit:
+
+```swift
+label.attributedText = NSAttributedString(attributed)
+```
+
 ## Copyright
 
 see ./LICENSE
